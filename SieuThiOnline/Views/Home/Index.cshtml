@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section banner{
+    @RenderPage("~/Views/Shared/_Banner.cshtml") 
+}
+@section menu{
+    @{Html.RenderAction("Menu", "Category");}    
+}
+
+
+@section product{
+    @{Html.RenderAction("List", "Product");}    
+}
+
+@section jsFooter_index{
+    <script>
+        var cart = {
+            init: function () {
+                this.addProductInCart();
+            },
+            addProductInCart: function () {
+                $('.insert-product').on('click', function () {
+                    var id = $(this).data('id');
+                    $.ajax({
+                        url: "/Cart/insertProduct",
+                        data: { id: id},
+                        dataType: "json",
+                        type: "POST",
+                        success: function (response) {
+                            $('.modal-message').text(response.status);
+                            $('.modal-message').addClass('show-modal-message');
+                        }
+                    })
+                    setTimeout(function () {
+                        $('.modal-message').removeClass('show-modal-message');
+                    }, 2000)
+                })
+
+
+
+            }
+        }
+        cart.init();
+    </script>
+}
+
+@section modal{
+    <div class="modal-message">
+
+    </div>
+}
+
+
+
+

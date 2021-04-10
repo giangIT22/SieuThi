@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Models.EF.Product
+
+@section detail{
+    <main class="main fix-pd2">
+    <section class="main__page-link">
+        <div class="container">
+            <div class="title">
+                <a href="/Home/Index">Trang chủ ></a><span>Trứng gà so Trang trại 729 Ba Vì giỏ 10 quả</span>
+            </div>
+        </div>
+    </section>
+    <section class="main__product-detail">
+        <div class="container">
+            <div class="row bg-white fix-row">
+                <div class="main__item">
+                    <img src="@Url.Content("~/Content/image/image_detail/" +Model.imgae_detail)" alt="">
+                </div>
+                <div class="main__item">
+                    <div class="item__info">
+                        <h2>@Model.name</h2>
+                        <div><span class="sku">SKU:@Model.sku</span></div>
+                        <div><span class="price">Giá</span><span>@Convert.ToDecimal(Model.price).ToString("#,##0")đ</span></div>
+                        <div><span class="status">Tình trạng sản phẩm</span><span>@((bool)Model.status == true ? "Còn hàng" : "Hết hàng")</span></div>
+                        <hr>
+                        <form action="Cart/Index" method="post" class="detail">
+                            <div class="qty">
+                                <span>Chọn số lượng</span>
+                                <p class="quality">
+                                    <button class="minus" onclick="minus()">
+                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="text" name="qty" id="" value="1">
+                                    <button class="plus" onclick="plus()">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </p>
+                            </div>
+
+                            <button data-id="@Model.id" class="add-product">
+                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                THÊM VÀO GIỎ HÀNG
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main__about">
+        <div class="container">
+            <div class="row">
+                <p>Về sản phẩm</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="main__product-description">
+        <div class="container">
+            <div class="row">
+                <div class="show">
+                    <h2>Giới thiệu sản phẩm Trứng gà so Trang trại 729 Ba Vì giỏ 10 quả</h2>
+                    <img src="@Url.Content("~/Content/image/image_detail/" +Model.imgae_detail)" alt="">
+                    <p>@Model.description</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="overlay"></div>
+</main>
+
+
+}
+@section jsFooter_detail{
+    <script src="~/Content/js/quality.js"></script>
+    <script src="~/Content/js/cart.js"></script>    
+}
+
+@section modal{
+    <div class="modal-message">
+        
+    </div>    
+}

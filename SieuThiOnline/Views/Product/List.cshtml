@@ -1,0 +1,144 @@
+﻿@{
+    var meat = (List<Models.EF.Product>)ViewBag.meat;
+    var cake = (List<Models.EF.Product>)ViewBag.cake;
+    var drink = (List<Models.EF.Product>)ViewBag.drink;
+    var veg = (List<Models.EF.Product>)ViewBag.veg;
+    var milk = (List<Models.EF.Product>)ViewBag.milk;
+}
+<main class="main">
+    <div class="container">
+        <section>
+            <div class="main__title">
+                <h1>Thịt</h1>
+            </div>
+            <div class="main__content">
+                <div class="row">
+                    @foreach (var item in meat)
+                    {
+                        <div class="main__item">
+                            <a href="/Product/Detail?id=@item.id" class="main__img">
+                                <img src="@Url.Content("~/Content/image/" + item.image)  " alt="">
+                            </a>
+                            <div class="main__info">
+                                <a href="detail.html" class="title"> @item.name</a>
+                                <span class="price">@Convert.ToDecimal(item.price).ToString("#,##0")đ</span>
+                                <button class="buy insert-product" data-id="@item.id">Thêm vào giỏ </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="main__products-show">
+                    <a href="">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="main__title">
+                <h1>Bánh</h1>
+            </div>
+            <div class="main__content">
+                <div class="row">
+                    @foreach (var item in cake)
+                    {
+                        <div class="main__item">
+                            <a href="/Product/Detail?id=@item.id" class="main__img">
+                                <img src="@Url.Content("~/Content/image/" + item.image)  " alt="">
+                            </a>
+                            <div class="main__info">
+                                <a href="detail.html" class="title"> @item.name</a>
+                                <span class="price">@Convert.ToDecimal(item.price).ToString("#,##0")đ</span>
+                                <button class="buy insert-product" data-id="@item.id">Thêm vào giỏ </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="main__products-show">
+                    <a href="#">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="main__title">
+                <h1>Nước uống</h1>
+            </div>
+            <div class="main__content">
+                <div class="row">
+
+                    @foreach (var item in drink)
+                    {
+                        <div class="main__item">
+                            <a href="/Product/Detail?id=@item.id" class="main__img">
+                                <img src="@Url.Content("~/Content/image/" + item.image)  " alt="">
+                            </a>
+                            <div class="main__info">
+                                <a href="detail.html" class="title"> @item.name</a>
+                                <span class="price">@Convert.ToDecimal(item.price).ToString("#,##0")đ</span>
+                                <button class="buy insert-product" data-id="@item.id">Thêm vào giỏ </button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="main__products-show">
+                    <a href="">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="main__title">
+                <h1>Rau và củ quả</h1>
+            </div>
+            <div class="main__content">
+                <div class="row">
+
+                    @foreach (var item in veg)
+                    {
+                        <div class="main__item">
+                            <a href="/Product/Detail?id=@item.id" class="main__img">
+                                <img src="@Url.Content("~/Content/image/" + item.image)  " alt="">
+                            </a>
+                            <div class="main__info">
+                                <a href="detail.html" class="title"> @item.name</a>
+                                <span class="price">@Convert.ToDecimal(item.price).ToString("#,##0")đ</span>
+                                <button class="buy insert-product" data-id="@item.id">Thêm vào giỏ </button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="main__products-show">
+                    <a href="">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="main__title">
+                <h1>Sữa</h1>
+            </div>
+            <div class="main__content">
+                <div class="row">
+
+                    @foreach (var item in milk)
+                    {
+                        <div class="main__item">
+                            <a href="/Product/Detail?id=@item.id" class="main__img">
+                                <img src="@Url.Content("~/Content/image/" + item.image)  " alt="">
+                            </a>
+                            <div class="main__info">
+                                <a href="detail.html" class="title"> @item.name</a>
+                                <span class="price">@Convert.ToDecimal(item.price).ToString("#,##0")đ</span>
+                                <button class="buy insert-product" data-id="@item.id">Thêm vào giỏ </button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="main__products-show">
+                    <a href="">Xem tất cả</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="overlay"></div>
+</main>
+

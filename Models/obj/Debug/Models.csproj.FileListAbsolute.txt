@@ -1,0 +1,10 @@
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\Models.dll.config
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\Models.dll
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\Models.pdb
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\EntityFramework.dll
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\EntityFramework.xml
+E:\ASP.net\SieuThiOnline\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\ASP.net\SieuThiOnline\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+E:\ASP.net\SieuThiOnline\Models\obj\Debug\Models.dll
+E:\ASP.net\SieuThiOnline\Models\obj\Debug\Models.pdb

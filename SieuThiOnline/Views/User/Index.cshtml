@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+}
+
+@model Models.EF.User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="~/Content/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/reset.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+</head>
+<body>
+    <div class="login">
+        <div class="container login--width">
+            <div class="item fix-pd">
+                <div class="login__logo">
+                    <p><span>GTU</span><small>mart</small><b>.vn</b></p>
+                </div>
+                <h5>Tạo tài khoản</h5>
+                @using (Html.BeginForm("Index", "User", FormMethod.Post, new { id = "form-1" }))
+                {
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.username, new { @id = "username", @class = "form-control", @placeholder = "Tên đăng nhập" })
+                        <span class="form-message" style="color:red">@ViewBag.error</span>
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(model => model.password, new { @id = "password", @class = "form-control", @placeholder = "Mật khẩu" })
+                        <span class="form-message"></span>
+                    </div>
+                     <div class="form-group">
+                        <input type="password" name="rePassword" id="repassword" placeholder="Nhập lại mật khẩu" class="form-control">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.fullname, new { @id = "full-name", @class = "form-control", @placeholder = "Họ và tên" })
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.phone, new { @id = "phone", @class = "form-control", @placeholder = "Sô điện thoại" })
+                        <span class="form-message"></span>
+                    </div>
+                    <button>Tạo tài khoản</button>
+                }
+
+                <a href="/Login/Index" style="float: right;">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/validator.js"></script>
+    <script>
+        Validator({
+            form: '#form-1',
+            errorSelector: '.form-message',
+            rules: [
+              Validator.isRequired('#username', 'Vui lòng nhập tên tài khoản'),
+              Validator.isRequired('#password'),
+              Validator.minLength('#password', 6),
+              Validator.isConfirmed('#repassword', function () {
+                  return document.querySelector('#form-1 #password').value;
+              }, 'Mật khẩu nhập lại không chính xác'),
+              Validator.isRequired('#full-name', 'Vui lòng nhập họ và tên'),
+              Validator.isRequired('#phone', 'Vui lòng nhập số điện thoại'),
+              Validator.minLength('#phone', 10, 'Vui lòng nhập tối thiểu 10 kí tự'),
+            ],
+        });
+    </script>
+</body>
+</html>
+

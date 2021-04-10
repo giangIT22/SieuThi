@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var products = (List<Models.EF.Product>)ViewBag.cart;
+    var totalPrice = 0;
+}
+
+@section cart{
+    <main class="main">
+    <section class="main__cart">
+        <div class="container">
+            <div class="row">
+                <div class="main__page-title">
+                    <h1>Giỏ hàng</h1>
+                </div>
+            </div>
+            <div class="row">
+                <form action="/Cart/UpdateCart" class="form-cart" method="post">
+                    <table class="main__item">
+                        <tr class="item-1">
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>thành tiền</th>
+                        </tr>
+
+                        @foreach (var product in products)
+                        {
+                            <tr class="item-2">
+                                <td>
+                                    <div class="img">
+                                        <img src="@Url.Content("~/Content/image/" +product.image)" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="product-name">
+                                            <a href="">@product.name</a>
+                                        </h3>
+                                        <a href="" class="remove-product">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            <span>Xóa sản phẩm</span>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>@Convert.ToDecimal(product.price).ToString("#,##0")đ</td>
+                                <td>
+                                    <div class="qty">
+                                        <p class="quality">
+                                            <button class="minus">
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                            </button>
+                                            <input type="text" name="@product.id" id="" value="@product.qty">
+                                            <button class="plus">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        @Convert.ToDecimal(product.qty * product.price).ToString("#,##0")
+                            totalPrice += Convert.ToInt32(Convert.ToDecimal(product.qty * product.price));
+
+                                }đ
+                            </td>
+                        </tr>
+                        }
+                        <tr class="item-3">
+                            <td colspan="4">
+                                <button class="continue">Tiếp tục mua hàng</button>
+                                <button class="update">Cập nhật só lượng</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="main__item">
+                        <div class="sum-price">
+                            <strong>Tổng tiền</strong>
+                            <span>@totalPrice.ToString("#,##0")đ</span>
+                        </div>
+                        <button class="checkout">Thanh toán</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="overlay"></div>
+</main>    
+}
+
+@section count_product{
+    <li class="heading__cart">
+        <a href="#">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span>
+                Giỏ  của bạn
+                <br>
+                (<span class="heading--red count">0</span>) sản phẩm
+            </span>
+        </a>
+    </li>    
+}
+@*@section jsFooter_cart{
+    <script src="~/Content/js/quality.js"></script>
+    <script src="~/Content/js/cart.js"></script>
+}*@
