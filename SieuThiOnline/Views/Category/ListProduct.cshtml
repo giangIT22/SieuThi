@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "ListProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var products = (List<Models.ViewModel.ProductViewModel>)ViewBag.products;
+}
+
+@model Models.EF.Category
+@section menu{
+    @{Html.RenderAction("Menu", "Category");}
+}
+
+@section count_product{
+    @{Html.RenderAction("GetCount", "Cart");}
+}
+
+@section login {
+    @{Html.RenderAction("Login", "Home");}
+}
+@section modal{
+    <div class="modal-message">
+
+    </div>
+}
+@section list_product_by_category{
+    <main class="main fix-pd2">
+    <section class="main__page-link">
+        <div class="container">
+            <div class="title">
+                <a href="/">Trang chủ &gt;</a><span>@(Model.name ?? "Tất cả sản phẩm")</span>
+            </div>
+        </div>
+    </section>
+    <section class="main__product-banner">
+        <div class="container">
+            <div class="row">
+                @RenderPage("~/Views/Shared/_Banner.cshtml") 
+            </div>
+        </div>
+    </section>
+    <section class="main__description">
+        <div class="container">
+            <div class="row">
+                <h1>@(Model.name ?? "Tất cả sản phẩm")</h1>
+            </div>
+        </div>
+    </section>
+    <section class="main__product-list">
+        <div class="container">
+            <div class="row">
+                @foreach (var product in products)
+                {
+                    <div class="main__item">
+                        <a href="/Product/Detail?id=@product.id" class="main__img">
+                            <img src="@Url.Content("~/Content/image/" + product.image)" alt="">
+                        </a>
+                        <div class="main__info">
+                            <a href="/Product/Detail?id=@product.id" class="title">@product.name</a>
+                            <span class="price">@Convert.ToDecimal(product.price).ToString("#,##0")đ</span>
+                            <button class="buy" data-id="@product.id">Thêm vào giỏ </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <div class="overlay"></div>
+</main>    
+}
+
+@section js_login{
+    <script>
+        var login1 = document.querySelector('.login-1');
+        var check2 = login1.querySelector('.check-2');
+        var check3 = login1.querySelector('.check-3');
+
+        if (!check2.innerText) {
+            check2.classList.add("hide-login");
+            check3.classList.add("show");
+        } else {
+            check2.classList.remove("hide-login");
+            check3.classList.remove("show");
+            check3.classList.add("hide-login");
+        }
+    </script>
+}
+
+@section jsFooter_index{
+    <script>
+        var cart = {
+            init: function () {
+                this.addProductInCart();
+            },
+            addProductInCart: function () {
+
+                $('.buy').on('click', function () {
+
+                    var id = $(this).data('id');
+                    $.ajax({
+                        url: "/Cart/insertProduct",
+                        data: { id: id },
+                        dataType: "json",
+                        type: "POST",
+                        success: function (response) {
+                            $('.modal-message').text(response.status);
+                            $('.modal-message').addClass('show-modal-message');
+                        }
+                    })
+                    setTimeout(function () {
+                        $('.modal-message').removeClass('show-modal-message');
+                    }, 800)
+
+                    window.location.href = "/Category/ListProduct?id=@Model.id";
+                })
+            }
+        }
+        cart.init();
+    </script>
+}
+

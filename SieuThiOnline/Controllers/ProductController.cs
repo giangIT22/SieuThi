@@ -35,5 +35,12 @@ namespace SieuThiOnline.Controllers
             var product = new ProductDao().getProductById(productId);
             return View(product);
         }
+
+
+        public ActionResult ListProduct()
+        {
+            ViewBag.products = new ProductDao().getListProduct();
+            return View();
+        }
 	}
 }

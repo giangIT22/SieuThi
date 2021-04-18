@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntroController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -201,6 +202,7 @@
     <Content Include="Content\image\drinks\cocacola.jpg" />
     <Content Include="Content\image\drinks\mirinda.jpg" />
     <Content Include="Content\image\drinks\nuoc-khoang.jpg" />
+    <Content Include="Content\image\drinks\nuoc-ngot-pepsi-thai-lon-330ml.jpg" />
     <Content Include="Content\image\drinks\redbull.jpg" />
     <Content Include="Content\image\drinks\tra-olong.jpg" />
     <Content Include="Content\image\image_detail\ba-chi-bo-my.jpg" />
@@ -254,6 +256,12 @@
     <Content Include="Content\image\milk\sua-oc-cho.jpg" />
     <Content Include="Content\image\milk\sua-th.jpg" />
     <Content Include="Content\image\milk\sua-yomost.jpg" />
+    <Content Include="Content\image\news\bai1.jpg" />
+    <Content Include="Content\image\news\bai2.jpg" />
+    <Content Include="Content\image\news\bai3.jpg" />
+    <Content Include="Content\image\news\bai4.jpg" />
+    <Content Include="Content\image\news\bai5.jpg" />
+    <Content Include="Content\image\news\bai6.jpg" />
     <Content Include="Content\image\services\1.png" />
     <Content Include="Content\image\services\2.png" />
     <Content Include="Content\image\services\3.png" />
@@ -349,13 +357,16 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Intro\Index.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Shared\_Cart.cshtml" />
-    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Shared\GetCount.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Category\ListProduct.cshtml" />
+    <Content Include="Views\Product\ListProduct.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

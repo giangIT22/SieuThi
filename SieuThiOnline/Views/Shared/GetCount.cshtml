@@ -1,11 +1,13 @@
 ﻿
 <li class="heading__cart">
-    <a href="#">
+    <a href="/Cart/Index">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         <span>
             Giỏ  của bạn
             <br>
-            (<span class="heading--red" class="count">0</span>) sản phẩm
+            (<span class="heading--red" class="count">@(ViewBag.count ?? 0)</span>) sản phẩm
         </span>
     </a>
+    <p>Tổng thành tiền : @ViewBag.price</p>
 </li>
+

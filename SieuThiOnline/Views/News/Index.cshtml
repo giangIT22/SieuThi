@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section menu{
+    @{Html.RenderAction("Menu", "Category");}
+}
+
+@section login {
+    @{Html.RenderAction("Login", "Home");}
+}
+
+@section js_login{
+    <script>
+        var login1 = document.querySelector('.login-1');
+        var check2 = login1.querySelector('.check-2');
+        var check3 = login1.querySelector('.check-3');
+
+        if (!check2.innerText) {
+            check2.classList.add("hide-login");
+            check3.classList.add("show");
+        } else {
+            check2.classList.remove("hide-login");
+            check3.classList.remove("show");
+            check3.classList.add("hide-login");
+        }
+    </script>
+}
+@section count_product{
+    @{Html.RenderAction("GetCount", "Cart");}
+}
+
+
+@section news{
+    
+<main class="main">
+    <div class="main__news-title">
+        <div class="container">
+            <div class="row">
+                <p><a href="/">Trang chủ</a> > Tin tức</p>
+            </div>
+        </div>
+    </div>
+    <div class="main__news-list">
+        <div class="container">
+            <div class="row">
+                <div class="main__item">
+                    <img src="~/Content/image/news/bai1.jpg" alt="">
+                    <h2>O’food Việt Nam siêu khuyến mại tại lễ hội ẩm thực tháng 3</h2>
+                    <span>2021-03-18 2:25:57</span>
+                    <p> O’food Việt Nam siêu khuyến mại tại lễ hội ẩm thực tháng 3  Tháng 3 – tháng có ý nghĩa đặc biệt dành cho phái đẹp. Để tôn vinh một nửa của Thế Giới, VinMart kết hợp cùng O’food mang đến “ Lễ hội ẩm t</p>
+                </div>
+                <div class="main__item">
+                    <img src="~/Content/image/news/bai2.jpg" alt="">
+                    <h2>Vinamilk  đồng hành trong chuỗi sự kiện chào mừng sinh nhật 6 tuổi của siêu thị VinMart</h2>
+                    <span>2021-03-18 2:25:57</span>
+                    <p>Đồng hành cùng với chuỗi sự kiện chào mừng sinh nhật 6 tuổi của Vinmart, Vinamilk tổ chức sự kiện quảng bá hình ảnh sản phẩm Sữa tươi tiệt trùng chứa Tổ Yến cao cấp tại Vinmart Royal</p>
+                </div>
+                <div class="main__item">
+                    <img src="~/Content/image/news/bai3.jpg" alt="">
+                    <h2>Bánh gạo One One thương hiệu bánh gạo số 1 Việt nam</h2>
+                    <span>2021-03-18 2:25:57</span>
+                    <p>One One là một thương hiệu nổi bật về sản phẩm bánh gạo, được người tiêu dùng ưa chuộng và bình chọn là sản phẩm bánh gạo được ưa thích số 1 tại Việt Nam trong nhiều năm liền. One One thươ</p>
+                </div>
+                <div class="main__item">
+                    <img src="~/Content/image/news/bai4.jpg" alt="">
+                    <h2>Bánh gạo One One giúp chị em dáng đẹp eo thon</h2>
+                    <span>2021-03-18 2:25:57</span>
+                    <p>Việt nam được biết đến là nước có sản lượng gạo xuất khẩu nhiều nhất thế giới. Và càng tự hào hơn nữa là chúng ta sử dụng chính lợi thế này để tạo ra những sản phẩm nâng cao giá trị cho nền nông ngh</p>
+                </div>
+                <div class="main__item">
+                    <img src="~/Content/image/news/bai5.jpg" alt="">
+                    <h2> Budweiser - Bật Chất Vua Khui Mùa Giải Lớn</h2>
+                    <span>2021-03-18 2:25:57</span>
+                    <p>Mua 1 thùng Budweiser nhận ngay 1 áo thun Budweiser phiên bản MESSI cực chất ngay hôm nay Thời gian chương trình: 01/11 đến 15/11/2020  Số lượng quà tặng có hạn  Áp dụng tại các siêu thị V</p>
+                </div>
+                <div class="main__item">
+                    <img src="~/Content/image/news/bai1.jpg" alt="">
+                    <h2>O’food Việt Nam siêu khuyến mại tại lễ hội ẩm thực tháng 3</h2>
+                    <span>2021-03-18 2:25:57</span>
+                    <p> O’food Việt Nam siêu khuyến mại tại lễ hội ẩm thực tháng 3  Tháng 3 – tháng có ý nghĩa đặc biệt dành cho phái đẹp. Để tôn vinh một nửa của Thế Giới, VinMart kết hợp cùng O’food mang đến “ Lễ hội ẩm t</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+</main>
+    
+}

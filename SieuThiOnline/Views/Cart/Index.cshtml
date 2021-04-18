@@ -5,6 +5,32 @@
     var products = (List<Models.EF.Product>)ViewBag.cart;
     var totalPrice = 0;
 }
+@section menu{
+    @{Html.RenderAction("Menu", "Category");}
+}
+
+@section login {
+    @{Html.RenderAction("Login", "Home");}
+}
+
+
+
+@section js_login{
+    <script>
+        var login1 = document.querySelector('.login-1');
+        var check2 = login1.querySelector('.check-2');
+        var check3 = login1.querySelector('.check-3');
+
+        if (!check2.innerText) {
+            check2.classList.add("hide-login");
+            check3.classList.add("show");
+        } else {
+            check2.classList.remove("hide-login");
+            check3.classList.remove("show");
+            check3.classList.add("hide-login");
+        }
+    </script>
+}
 
 @section cart{
     <main class="main">
@@ -36,7 +62,7 @@
                                         <h3 class="product-name">
                                             <a href="">@product.name</a>
                                         </h3>
-                                        <a href="" class="remove-product">
+                                        <a href="/Cart/DeleteCart?id=@product.id" class="remove-product">
                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                             <span>Xóa sản phẩm</span>
                                         </a>
@@ -46,13 +72,7 @@
                                 <td>
                                     <div class="qty">
                                         <p class="quality">
-                                            <button class="minus">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input type="text" name="@product.id" id="" value="@product.qty">
-                                            <button class="plus">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
+                                            <input type="text" name="@product.id" class="check-input" value="@product.qty" style="width:50px;">                                            
                                         </p>
                                     </div>
                                 </td>
@@ -77,7 +97,8 @@
                             <strong>Tổng tiền</strong>
                             <span>@totalPrice.ToString("#,##0")đ</span>
                         </div>
-                        <button class="checkout">Thanh toán</button>
+                        <button class="checkout" type="button">Thanh toán</button>
+                        <div class="sum-product-show" style="margin:10px 0; padding:10px 0;border:1px solid #000;">Tổng số lượng sản phẩm : @(ViewBag.qty ?? "")</div>
                     </div>
                 </form>
             </div>
@@ -86,20 +107,33 @@
     <div class="overlay"></div>
 </main>    
 }
-
 @section count_product{
-    <li class="heading__cart">
-        <a href="#">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            <span>
-                Giỏ  của bạn
-                <br>
-                (<span class="heading--red count">0</span>) sản phẩm
-            </span>
-        </a>
-    </li>    
+    @{Html.RenderAction("GetCount", "Cart");}
 }
-@*@section jsFooter_cart{
-    <script src="~/Content/js/quality.js"></script>
+
+
+@section jsFooter_cart{    
     <script src="~/Content/js/cart.js"></script>
-}*@
+    <script>
+        var checkInput = document.querySelectorAll(".check-input");
+        Array.from(checkInput);
+        checkInput.forEach(function (item) {
+            item.onblur = function (e) {
+                if (isNaN(e.target.value)) {
+                    alert("Vui lòng nhập giá trị là số");
+                    e.target.value = 1;
+                } else if ((e.target.value) % 1 != 0) {
+                    alert("Vui lòng nhập số nguyên")
+                    e.target.value = 1;
+                }
+                else if (e.target.value > 60) {
+                    alert("Vui lòng nhập số lượng sản phẩm nhỏ hơn 60")
+                    e.target.value = 1;
+                }
+            }
+        })
+
+
+        
+    </script>
+}

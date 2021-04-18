@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model Models.EF.Order
+
 @section order{
         <main class="main">
     <section class="main__checkout">
@@ -19,31 +21,60 @@
                 </div>
             </div>
             <div class="row">
-                <form action="" class="main__form-control" id="form-3">
+                @using (Html.BeginForm("Index", "Order", FormMethod.Post, new { id = "form-3", @class= "main__form-control" })){
                     <div class="main__checkout-info">
                         <label for="">Họ và tên</label>
-                        <input type="text" name="fullName" id="" placeholder="Nhập họ và tên đầy đủ">
+                        @Html.TextBoxFor(model => model.customer_name, new { @placeholder = "Nhập họ và tên đầy đủ" })
                     </div>
                     <div class="main__checkout-info">
                         <label for="">Điện thoại di động</label>
-                        <input type="text" name="phone" id="" placeholder="Nhập số điện thoại">
+                        @Html.TextBoxFor(model => model.customer_phone, new { @placeholder = "Nhập số điện thoại" })
                     </div>
                     <div class="main__checkout-info">
                         <label for="">Địa chỉ giao hàng</label>
-                        <input type="text" name="address" id="" placeholder="Nhập địa chỉ giao hàng cụ thể">
+                        @Html.TextBoxFor(model => model.customer_address, new { @placeholder = "Nhập địa chỉ giao hàng cụ thể" })
                     </div>
                     <div class="main__checkout-info">
                         <label for="">Ghi chú</label>
-                        <textarea rows="5" name="note" placeholder="Ghi chú"></textarea>
+                        @Html.TextAreaFor(model => model.note, new { @placeholder = "Ghi chú" })
                     </div>
                     <div class="main__checkout-success">
-                        <button>Hoàn tất</button>
+                        <button onclick="alert('Bạn đã mua hàng thành công')">Hoàn tất</button>
                     </div>
-                </form>
+                }
+                @*<form action="/Order/Store" class="main__form-control" id="form-3">
+                </form>*@
             </div>
         </div>
     </section>
     <div class="overlay"></div>
 </main>
 }
+@section login {
+    @{Html.RenderAction("Login", "Home");}
+}
+
+@section count_product{
+    @{Html.RenderAction("GetCount", "Cart");}
+}
+
+@section js_login{
+    <script>
+        var login1 = document.querySelector('.login-1');
+        var check2 = login1.querySelector('.check-2');
+        var check3 = login1.querySelector('.check-3');
+
+        if (!check2.innerText) {
+            check2.classList.add("hide-login");
+            check3.classList.add("show");
+        } else {
+            check2.classList.remove("hide-login");
+            check3.classList.remove("show");
+            check3.classList.add("hide-login");
+        }
+    </script>
+}
+
+
+
 

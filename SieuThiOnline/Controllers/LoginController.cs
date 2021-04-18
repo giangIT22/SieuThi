@@ -28,8 +28,9 @@ namespace SieuThiOnline.Controllers
                 var userSession = new UserLogin();
                 userSession.UserId = user.id;
                 userSession.UserName = user.username;
-                Session.Add(Constants.USER_SESSION, userSession);//tạo session 
-                return RedirectToAction("Index", "Home");
+                userSession.fullName = user.fullname;
+                Session["user"] = userSession;
+                return RedirectToAction("Index", "Order");
             }
             else
             {

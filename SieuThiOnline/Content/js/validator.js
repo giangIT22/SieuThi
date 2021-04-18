@@ -15,7 +15,7 @@ function Validator(options){
         //nếu có lỗi thì dừng việc kiểm tra
         for(var rule of rules){
             errorMessage = rule(inputElement.value);
-            if(errorMessage) break;
+            if(errorMessage) {break};
         }
 
         if(errorMessage){

@@ -9,6 +9,7 @@ namespace SieuThiOnline
     {
         public int UserId { set; get; }
         public string UserName{set;get;}
+        public string fullName { set; get; }
 
     }
 }

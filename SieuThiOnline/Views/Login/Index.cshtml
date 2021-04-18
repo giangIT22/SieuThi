@@ -35,6 +35,10 @@
                         @*<input type="password" name="password" id="password" placeholder="Mật khẩu" class="form-control">*@
                         <span class="form-message"></span>
                     </div>
+                    <div class="form-group">
+                        <input type="text" name="ho-chieu" id="ho-chieu" placeholder="Nhập Hộ chiếu" class="form-control">
+                        <span class="form-message"></span>
+                    </div>
                     <button >Đăng nhập</button>
                     <h3 style="color:red; margin-bottom:20px; text-align:left; font-size:14px;">@ViewBag.error</h3>
                 }
@@ -53,11 +57,13 @@
               Validator.isRequired('#username', 'Vui lòng nhập tên tài khoản'),
               Validator.isRequired('#password'),
               Validator.minLength('#password', 6),
+              Validator.isRequired('#ho-chieu'),
             //   Validator.isConfirmed('#password_confirmation', function() {
             //     return document.querySelector('#form-1 #password').value;
             //   }, 'Mật khẩu nhập lại không chính xác'),
             ],
         });
+        
     </script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var products = (List<Models.EF.Product>)ViewBag.products;
+}
+@section menu{
+    @{Html.RenderAction("Menu", "Category");}
+}
+@section search_product{
+<main class="main">
+    <section class="main__product-list">
+        <div class="container">
+            <div class="row fix-flex">
+                @foreach(var product in products){
+                    <div class="main__item">
+                        <a href="detail.html" class="main__img">
+                            <img src="@Url.Content("~/Content/image/" + product.image)" alt="">
+                        </a>
+                        <div class="main__info">
+                            <a href="detail.html" class="title">@product.name</a>
+                            <span class="price">139.000</span>
+                            <button class="buy">Thêm vào giỏ </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>   
+
+}
+    @section js_login{
+        <script>
+            var login1 = document.querySelector('.login-1');
+            var check2 = login1.querySelector('.check-2');
+            var check3 = login1.querySelector('.check-3');
+
+            if (!check2.innerText) {
+                check2.classList.add("hide-login");
+                check3.classList.add("show");
+            } else {
+                check2.classList.remove("hide-login");
+                check3.classList.remove("show");
+                check3.classList.add("hide-login");
+            }
+        </script>
+    }
+
+@section count_product{
+    @{Html.RenderAction("GetCount", "Cart");}
+}
+
+@section login {
+    @{Html.RenderAction("Login", "Home");}
+}
+

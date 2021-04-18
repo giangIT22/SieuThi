@@ -16,9 +16,40 @@ namespace SieuThiOnline.Controllers
         
         public ActionResult Index()
         {
+            List<Product> lst = (List<Product>)Session["cart"];
+            int ? sum = 0;
+            
             ViewBag.cart =(List<Product>)Session["cart"];
+            foreach (var item in lst)
+            {
+                sum += item.qty;
+            }
+
+            ViewBag.qty = sum;
             return View();
         }
+
+        public PartialViewResult GetCount()
+        {
+            if (Session["cart"] != null)
+            {
+                ViewBag.count = ((List<Product>)Session["cart"]).Count();
+            }
+            else
+            {
+                ViewBag.count = 0;
+            }
+            List<Product> lst = (List<Product>)Session["cart"];
+            var sumPrice = 0;
+            foreach (var item in lst)
+            {
+                   sumPrice += Convert.ToInt32(Convert.ToDecimal(item.qty * item.price));
+            }
+
+            ViewBag.price = sumPrice.ToString("#,##0");
+            return PartialView();
+        }
+
 
         [HttpPost]
         public JsonResult insertCart(int id, int qty)
@@ -54,8 +85,10 @@ namespace SieuThiOnline.Controllers
             }
 
             Session["cart"] = lst;
-            return Json(new {
-                count = lst.Count(),
+            products = (List<Product>)Session["cart"];
+            return Json(new
+            {
+                count = products.Count().ToString(),
                 status = "Thêm sản phẩm thành công"
             });
         }
@@ -64,7 +97,7 @@ namespace SieuThiOnline.Controllers
         {
             List<Product> lst = (List<Product>)Session["cart"];
             var product = new ProductDao().getProductById(id);
-            if (lst.Count() == 0)
+            if (lst == null)
             {
                 product.qty = 1;
                 lst.Add(product);
@@ -92,9 +125,10 @@ namespace SieuThiOnline.Controllers
             }
 
             Session["cart"] = lst;
+            products = (List<Product>)Session["cart"];
             return Json(new
             {
-                count = lst.Count(),
+                count =products.Count().ToString(),
                 status = "Thêm sản phẩm thành công"
             });
         }
@@ -117,6 +151,39 @@ namespace SieuThiOnline.Controllers
                 }
             }
             Session["cart"] = products;
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public JsonResult checkLogin()
+        {
+            var status = true;
+            UserLogin user = (UserLogin)Session["user"];
+            if (user.UserName ==null)
+            {
+               status = false;
+            }
+            else{
+                status = true;
+            }
+            return Json(new
+            {
+                status = status
+            });
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCart()
+        {
+            List<Product> products = (List<Product>)Session["cart"];
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            foreach (var product in products)
+            {
+                if (product.id == id)
+                {
+                    products.Remove(product);
+                    break;
+                }
+            }
             return RedirectToAction("Index", "Cart");
         }
 	}

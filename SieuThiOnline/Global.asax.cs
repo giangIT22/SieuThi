@@ -22,6 +22,7 @@ namespace SieuThiOnline
         protected void Session_Start(object sender, EventArgs e)
         {
             Session["cart"] = new List<Product>();
+            Session["user"] = new UserLogin();
         }
     }
 }

@@ -4,7 +4,12 @@
 }
 
 @model Models.EF.Product
-
+@section menu{
+    @{Html.RenderAction("Menu", "Category");}
+}
+@section login {
+    @{Html.RenderAction("Login", "Home");}
+}
 @section detail{
     <main class="main fix-pd2">
     <section class="main__page-link">
@@ -77,6 +82,29 @@
 
 
 }
+
+@section js_login{
+    <script>
+        var login1 = document.querySelector('.login-1');
+        var check2 = login1.querySelector('.check-2');
+        var check3 = login1.querySelector('.check-3');
+
+        if (!check2.innerText) {
+            check2.classList.add("hide-login");
+            check3.classList.add("show");
+        } else {
+            check2.classList.remove("hide-login");
+            check3.classList.remove("show");
+            check3.classList.add("hide-login");
+        }
+    </script>
+}
+
+@section count_product{
+    @{Html.RenderAction("GetCount", "Cart");}
+}
+
+
 @section jsFooter_detail{
     <script src="~/Content/js/quality.js"></script>
     <script src="~/Content/js/cart.js"></script>    

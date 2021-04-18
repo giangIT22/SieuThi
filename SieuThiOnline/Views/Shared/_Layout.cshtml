@@ -19,15 +19,15 @@
                     <div class="heading__bar">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </div>
-                    <a href="" class="heading-logo"><span>GTU</span><small>mart</small><b>.vn</b></a>
-                    <form action="" method="post">
-                        <input type="text" name="" id="" placeholder="Nhập tên sản phẩm cần tìm">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                    <a href="/" class="heading-logo"><span>GTU</span><small>mart</small><b>.vn</b></a>
+                    <form action="/Home/Search" method="post" class="searching">
+                        <input type="text" name="product-name" id="" placeholder="Nhập tên sản phẩm cần tìm">
+                        <button><i class="fa fa-search" aria-hidden="true" id="search-product"></i></button>
                     </form>
                     <ul>
-                        @RenderPage("./_Login.cshtml")
-
-                       @RenderSection("count_product", required: false)
+                        @RenderSection("login", required: false)
+                        @RenderSection("count_product", required:false)
+                      
                     </ul>
                 </div>
             </div>
@@ -39,14 +39,13 @@
                         <li class="heading--close">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
-                        <li><a href="#" class="">Trang chủ</a></li>
+                        <li><a href="/" class="">Trang chủ</a></li>
                         <li class="check">
-                            <a href="#">Sản phẩm <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <a href="/Product/ListProduct">Sản phẩm <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                             @RenderSection("menu", required:false)
                         </li>
-                        <li><a href="#">Sản phẩm bán chạy</a></li>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Tin tức</a></li>
+                        <li><a href="/Intro/Index">Giới thiệu</a></li>
+                        <li><a href="/News/Index">Tin tức</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,6 +66,13 @@
 
     @RenderSection("modal", required:false)
 
+    @RenderSection("search_product", required:false)
+
+    @RenderSection("list_product_by_category", required:false)
+
+    @RenderSection("show_list_product", required:false)
+
+    @RenderSection("news", required:false)
     <footer class="footer">
         <section class="footer__footer-top">
             <div class="container">
@@ -112,11 +118,11 @@
                     <div class="footer__item">
                         <h3>Danh mục</h3>
                         <ul>
-                            <li><a href="">Thịt</a></li>
-                            <li><a href="">Bánh kẹo</a></li>
-                            <li><a href="">Nước uống</a></li>
-                            <li><a href="">Rau</a></li>
-                            <li><a href="">Sữa</a></li>
+                            <li><a href="/Category/ListProduct?id=1">Thịt</a></li>
+                            <li><a href="/Category/ListProduct?id=2">Bánh kẹo</a></li>
+                            <li><a href="/Category/ListProduct?id=3">Nước uống</a></li>
+                            <li><a href="/Category/ListProduct?id=4">Rau</a></li>
+                            <li><a href="/Category/ListProduct?id=5">Sữa</a></li>
                         </ul>
                     </div>
                     <div class="footer__item">
@@ -137,8 +143,9 @@
     
     @RenderSection("jsFooter_index", required: false)
 
-    @*@RenderSection("jsFooter_cart", required: false)*@
+    @RenderSection("jsFooter_cart", required: false)
 
+    @RenderSection("js_login", required:false)
 
     <script>
 
@@ -146,6 +153,7 @@
         let hideMenu = document.querySelector('.heading--close');
         let overLay = document.querySelector('.overlay');
         let showDropDownMenu = document.querySelector('.check');
+        let inputCheck = document.getElementById('check-input');
 
         showMenu.addEventListener('click', function () {
             document.querySelector('.heading__menu').classList.add('show-menu');
@@ -163,6 +171,7 @@
         showDropDownMenu.addEventListener('click', function () {
             document.querySelector('.drop-down').classList.toggle('show');
         });
+        
 
         // overLay.onclick = function() {
         //     document.querySelector('.heading__menu').classList.remove('show-menu');
@@ -173,6 +182,7 @@
         document.querySelector('form.detail').onsubmit = function (e) {
             e.preventDefault();
         }
+        
     </script>
 
     

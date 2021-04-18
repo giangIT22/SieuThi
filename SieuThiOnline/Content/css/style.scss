@@ -4,6 +4,11 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
   }
+  .fix-flex{
+	
+		justify-content: flex-start !important;
+		margin:0 -10px;
+  }
 
   .modal-message{
     position: fixed;
@@ -29,7 +34,9 @@
   .show{
 	  display: block !important;
   }
-  
+  .hide-login{
+	display: none !important;
+  }
   .show-menu{
 	  right: 30% !important;
 	  z-index: 1000;
@@ -102,26 +109,30 @@
           form{
               width: 48%;
               position: relative;
-            input{
-                width: 100%;
-                padding: 5px 40px 5px 10px;
-                font-size: 18px;
-            }
-            input::placeholder{
-                font-size: 14px;
-            }
+				input{
+					width: 100%;
+					padding: 5px 40px 5px 10px;
+					font-size: 18px;
+				}
+				input::placeholder{
+					font-size: 14px;
+				}
 
-            input:focus{
-                border: 1px solid #ed1c24;
-            }
+				input:focus{
+					border: 1px solid #ed1c24;
+				}
 
-            i{
-                font-size: 20px;
-                position: absolute;
-                right: 10px;
-                top: 6px;
-                cursor: pointer;
-            }
+				button{
+					position: absolute;
+					right: 10px;
+					top: 6px;
+					border:none;
+					background:#fff;
+					i{
+					font-size: 20px;
+					cursor: pointer;
+				}
+			}
           }
           ul{
               li{
@@ -238,7 +249,7 @@
             padding: 10px 15px;
             .main__item{
                 position: relative;
-                width: 210px;
+                width: calc(100% / 6 - 10px);
                 transition: all .3s ease-in-out;
                 img{
 					height:175px;
@@ -251,7 +262,7 @@
 						line-height:2.5ex;
 						height:5ex;
                         font-size: 14px;
-                        color: #333;
+                        color:red;
                         text-decoration: none;
                         margin-bottom: 10px;
                         display: block;
@@ -294,6 +305,11 @@
                     width: 200px;
                     color: #ed1c24;
                 }
+				a:hover{
+					background:red;
+					color:#fff;
+				}
+				
             }
         }
     }
@@ -429,6 +445,7 @@
     //====================BESTSELLER-SHOP=============================
     .main__description{
         h1{
+			color:red;
             font-size: 18px;
             font-weight: bold;
             border-bottom: 1px solid rgb(214, 54, 54);
@@ -436,6 +453,7 @@
     }
     .main__product-list{
         .main__item{
+			margin: 0 20px;
             position: relative;
             width: 262px;
             transition: all .3s ease-in-out;
@@ -446,11 +464,13 @@
             .main__info{
                 padding: 0 10px;
                 a.title{
+					height:5ex;
+					line-height:2.5ex;
                     font-size: 14px;
                     color: #333;
                     text-decoration: none;
                     margin-bottom: 10px;
-                    display: inline-block;
+                    display: block;
                 }
                 span{
                     font-size: 13px;
@@ -473,6 +493,55 @@
         }
     }
 
+	//===================================Tin tuc============================================
+    .main__news-title{
+        margin-bottom: 20px;
+        p{
+            font-size: 20px;
+            a{
+                font-size: 20px;
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    }
+
+    .main__news-list{
+        .main__item{
+            margin-bottom: 30px;
+            width: calc((100% / 3) - 30px) ;
+            img{
+                height: 255px;
+                width: 100%;
+            }
+            h2{
+				line-height: 2.5ex;
+				height:5ex;
+                font-size: 17px;
+                font-weight: 500;
+                margin: 15px 0;
+            }
+            span{
+                font-size: 13px;
+                color: rgb(173, 172, 172);
+                display: block;
+                margin: 0 0 10px 0;
+            }
+            p{
+                font-size: 15px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 20px;
+            }
+        }
+
+		.main__item:hover{
+			cursor: pointer
+		}
+    }
     //==============CART==========================
     .main__cart{
         .main__page-title{
@@ -481,7 +550,7 @@
             h1{
                 font-size: 25px;
                 font-weight: bold;
-                color: #cc0101;
+                color: #000;
                 border-bottom: 3px solid #ed1c24;
                 display: inline-block;
             }
@@ -496,6 +565,9 @@
             padding: 30px 0;
             table{
                 width: 65%;
+				th{
+					color:red;
+				}
                 tr{
                     border-bottom: 1px solid rgb(185, 185, 185);
                     th{
@@ -527,7 +599,7 @@
                                     font-size: 15px;
                                     text-decoration: none;
                                     font-weight: bold;
-                                    color: #000;
+                                    color:red;
                                     margin: 7px 0;
                                     display: inline-block;
                                     span,i{
@@ -588,6 +660,7 @@
                     strong{
                         font-size: 14px;
                         font-weight: bold;
+						color:red;
                     }
                     span{
                         font-weight: bold;
@@ -849,7 +922,14 @@
 
 }
 //===============responsive===================
-//================>992
+
+@media screen and (min-width:1200px){
+ .main__product-list{
+            .main__item{
+                width: calc(25% - 40px) !important;
+            }
+        }
+}
 @media screen and (max-width:1199px){
     .container{
         width: 93%;
@@ -864,7 +944,7 @@
         //=================ban chay===================
         .main__product-list{
             .main__item{
-                width: 24%;
+                width: calc(25% - 40px);
             }
         }
     }
@@ -1024,7 +1104,7 @@
         //=================ban chay===================
         .main__product-list{
             .main__item{
-                width: 31%;
+                width: calc((100% / 3) - 40px);
             }
         }
         //=====================cart=======================
@@ -1248,7 +1328,7 @@
         //=================ban chay===================
         .main__product-list{
             .main__item{
-                width: 47%;
+                 width: calc(50% - 40px);
             }
         }
         //=====================cart=======================

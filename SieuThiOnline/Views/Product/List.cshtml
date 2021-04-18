@@ -5,6 +5,7 @@
     var veg = (List<Models.EF.Product>)ViewBag.veg;
     var milk = (List<Models.EF.Product>)ViewBag.milk;
 }
+
 <main class="main">
     <div class="container">
         <section>
@@ -20,7 +21,7 @@
                                 <img src="@Url.Content("~/Content/image/" + item.image)  " alt="">
                             </a>
                             <div class="main__info">
-                                <a href="detail.html" class="title"> @item.name</a>
+                                <a href="/Product/Detail?id=@item.id" class="title"> @item.name</a>
                                 <span class="price">@Convert.ToDecimal(item.price).ToString("#,##0")đ</span>
                                 <button class="buy insert-product" data-id="@item.id">Thêm vào giỏ </button>
                             </div>
@@ -28,7 +29,7 @@
                     }
                 </div>
                 <div class="main__products-show">
-                    <a href="">Xem tất cả</a>
+                    <a href="/Category/ListProduct?id=1">Xem tất cả</a>
                 </div>
             </div>
         </section>
@@ -53,7 +54,7 @@
                     }
                 </div>
                 <div class="main__products-show">
-                    <a href="#">Xem tất cả</a>
+                    <a href="/Category/ListProduct?id=2">Xem tất cả</a>
                 </div>
             </div>
         </section>
@@ -80,7 +81,7 @@
 
                 </div>
                 <div class="main__products-show">
-                    <a href="">Xem tất cả</a>
+                    <a href="/Category/ListProduct?id=2">Xem tất cả</a>
                 </div>
             </div>
         </section>
@@ -107,7 +108,7 @@
 
                 </div>
                 <div class="main__products-show">
-                    <a href="">Xem tất cả</a>
+                    <a href="/Category/ListProduct?id=4">Xem tất cả</a>
                 </div>
             </div>
         </section>
@@ -134,7 +135,7 @@
 
                 </div>
                 <div class="main__products-show">
-                    <a href="">Xem tất cả</a>
+                    <a href="/Category/ListProduct?id=5">Xem tất cả</a>
                 </div>
             </div>
         </section>

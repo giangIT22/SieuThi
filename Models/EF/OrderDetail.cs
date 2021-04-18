@@ -8,31 +8,19 @@ namespace Models.EF
 
     public partial class OrderDetail
     {
-        [Key]
-        [Column(Order = 0)]
         public int id { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int orders_id { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int products_id { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
+        [Required]
         [StringLength(50)]
-        public string product_name { get; set; }
+        public string products_name { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long product_price { get; set; }
+        public long products_price { get; set; }
 
-        public int? product_qty { get; set; }
+        public int? products_qty { get; set; }
 
         public virtual Order Order { get; set; }
 
